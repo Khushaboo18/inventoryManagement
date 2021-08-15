@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
+import { isEmail } from "validator";
 import AuthService from "../services/auth.service";
 
 const Login = (props) => {
@@ -19,6 +19,16 @@ const Login = (props) => {
       return (
         <div className="alert alert-danger" role="alert">
           This field is required!
+        </div>
+      );
+    }
+  };
+
+  const validEmail = (value) => {
+    if (!isEmail(value)) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid email.
         </div>
       );
     }
@@ -81,7 +91,7 @@ const Login = (props) => {
               name="username"
               value={username}
               onChange={onChangeUsername}
-              validations={[required]}
+              validations={[required, validEmail]}
             />
           </div>
 
