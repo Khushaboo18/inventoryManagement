@@ -76,7 +76,7 @@ exports.signin = (req, res) => {
     errors.push({ passowrd: "required" });
   }
   if (errors.length > 0) {
-    return res.status(401).json({ errors: errors });
+    return res.status(401).send({ errors: "Username/Password is incorrect" });
   }
 
   User.findOne({ email: req.body.email }).then(user => {
