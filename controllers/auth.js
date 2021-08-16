@@ -84,7 +84,7 @@ exports.signin = (req, res) => {
       return res.status(401).send({ errors: "Username/Password is incorrect" });
     }
 
-    //Comparing the user password with hstored ashed password
+    //Comparing the user password with stored hashed password
     else {
       bcrypt.compare(password, user.password, function (err, result) {
         if (!result) {
